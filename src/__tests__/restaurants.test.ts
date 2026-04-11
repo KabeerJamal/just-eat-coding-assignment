@@ -42,10 +42,33 @@ test('should reject with a formatted NetworkError when the fetch throws an excep
 })
 
 test("should throw a TimeoutError if the request takes too long", async () => {
-    // mock fetch to nevver resolve(this is simulating a hang)
-    global.fetch = jest.fn(() => new Promise(() => { }));
+     jest.useFakeTimers();
 
-    await expect(fetchRestaurantData("EC4M7RF"))
-        .rejects
-        .toMatchObject({ type: 'TimeoutError' });
+    global.fetch = jest.fn((url, options) => {
+    return new Promise((resolve, reject) => {
+        // ths simulates the hang
+        
+        //we must listen for the abort signal to break hang
+        if (options?.signal) {
+            options.signal.addEventListener('abort', () => {
+                const error = new Error('The operation was aborted');
+                error.name = 'AbortError';
+                reject(error); // this will triggar catch block in my source code
+            });
+        }
+    });
+});
+
+    const promise = fetchRestaurantData("EC4M7RF");
+
+    // fastforward time
+    jest.advanceTimersByTime(3000);
+
+    await expect(promise).rejects.toMatchObject({ 
+        message: "Request timed out",
+        status: 0,
+        type: 'TimeoutError',
+    });
+
+    jest.useRealTimers();
 });
