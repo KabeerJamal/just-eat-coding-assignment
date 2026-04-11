@@ -29,7 +29,7 @@ export async function handleError(error: unknown): Promise<never> {
         throw new APIError(
             'Request timed out',
             0,
-            'TimeoutError' 
+            'TimeoutError'
         );
     }
     throw new APIError(
@@ -55,6 +55,6 @@ export async function fetchWithTimeout(
         });
         return response;
     } finally {
-        clearTimeout(timer); // Always clean up the timer
+        clearTimeout(timer);
     }
 }
