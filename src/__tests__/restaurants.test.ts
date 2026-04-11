@@ -44,10 +44,9 @@ test('should reject with a formatted NetworkError when the fetch throws an excep
 test("should throw a TimeoutError if the request takes too long", async () => {
      jest.useFakeTimers();
 
-    global.fetch = jest.fn((url, options) => {
+    mockFetch.mockImplementation((url, options) => {
     return new Promise((resolve, reject) => {
-        // ths simulates the hang
-        
+            // simulate hanging request
         //we must listen for the abort signal to break hang
         if (options?.signal) {
             options.signal.addEventListener('abort', () => {
