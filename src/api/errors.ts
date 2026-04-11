@@ -1,3 +1,7 @@
+/**
+ * Instead of throwing generic errors, this class ensures all API-related failures
+ * follow a consistent structure (message, status, type). 
+ */
 export class APIError extends Error {
   status: number;
   type: string;
