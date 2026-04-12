@@ -6,6 +6,10 @@ global.fetch = jest.fn()
 const mockFetch = fetch as jest.Mock
 const fakePostcode = '1234';
 
+beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
 
 describe("restaurants", () => {
         

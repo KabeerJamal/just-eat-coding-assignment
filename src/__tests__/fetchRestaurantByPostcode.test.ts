@@ -7,6 +7,9 @@ jest.mock("../api/restaurants");
 
 const mockPostcode = "EC4M 7RF";
 
+beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
 describe('fetchRestaurantsByPostcode' , () => {
 
