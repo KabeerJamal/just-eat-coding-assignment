@@ -43,7 +43,7 @@ export async function handleError(error: unknown): Promise<never> {
 export async function fetchWithTimeout(
     url: string,
     options: RequestInit = {},
-    timeoutMs = 3000
+    timeoutMs = 5000
 ): Promise<Response> {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);

@@ -1,0 +1,59 @@
+@use '_header';
+@use '_search-bar';
+@use '_loading';
+@use 'restaurant-card';
+@use '_error-banner';
+@use '_idle-state';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 2px;
+  font-family: system-ui, sans-serif;
+}
+
+
+:root {
+ /* Primary */
+ --color-primary: #d95f00;
+
+ /* Text */
+ --color-text-main: #1f2323;   /* made darker for better readability */
+ --color-text-muted: #393b3b; 
+
+ /* Backgrounds */
+ --color-bg-light: #f7f7f7;   
+ --color-surface: #ffffff;
+
+ /* Borders */
+ --color-border: #cfcfcf;    
+ --color-border-darker: #aeabab;
+
+ /* States */
+ --color-error: #b00020;  
+
+  /* Spacing Tokens */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+
+  /* Shadows */
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+//For accessibility
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

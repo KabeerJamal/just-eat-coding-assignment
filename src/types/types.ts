@@ -22,3 +22,5 @@ export interface RestaurantUI {
     };
 }
 
+
+export type SearchStatus = 'idle' | 'loading' | 'success' | 'error';
