@@ -3,6 +3,7 @@ import { fetchRestaurantsByPostcode } from '../services/fetchRestaurantsByPostco
 import { RestaurantUI } from '../types';
 import { APIError } from '../api/errors';
 import { SearchStatus } from '../types';
+import { UK_POSTCODE_REGEX } from '../config/constants';
 
 export function useRestaurantSearch() {
   const [postcode, setPostcode] = useState('');
@@ -21,6 +22,11 @@ export function useRestaurantSearch() {
 
   function search(postcodeOverride?: string) {
     const value = postcodeOverride !== undefined ? postcodeOverride : postcode;
+    if(!UK_POSTCODE_REGEX.test(value.trim())) {
+      setValidationError('Please enter a valid UK postcode');
+      setRestaurants([]);
+      return;
+    }
 
     setValidationError('');
     setApiError(null);
