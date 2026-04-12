@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { fetchRestaurantsByPostcode } from '../services/fetchRestaurantsByPostcode';
 import { RestaurantUI } from '../types';
 import { APIError } from '../api/errors';
-import { UK_POSTCODE_REGEX } from '../config/constants';
+import { SearchStatus } from '../types';
 
 export function useRestaurantSearch() {
   const [postcode, setPostcode] = useState('');
   const [restaurants, setRestaurants] = useState<RestaurantUI[]>([]);
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<SearchStatus>('idle');
   const [apiError, setApiError] = useState<APIError | Error | null>(null);
   const [validationError, setValidationError] = useState('');
 
