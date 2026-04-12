@@ -8,7 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "test": "jest"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KabeerJamal/just-eat-coding-assignment.git"
@@ -31,6 +31,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "jest": "^30.3.0",
+    "sass": "^1.99.0",
     "ts-jest": "^29.4.9",
     "vite": "^8.0.8"
   }
