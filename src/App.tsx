@@ -1,4 +1,7 @@
 import { useRestaurantSearch } from './hooks/useRestaurantSearch';
+import { SearchBar } from './components/search/SearchBar';
+import { ApiErrorBanner } from './components/status/ApiErrorBanner';
+import { RestaurantList } from './components/restaurants/RestaurantList';
 import { Header } from './components/layout/Header';
 import { LoadingSpinner } from './components/status/LoadingSpinner';
 import { IdleState } from './components/status/IdleState';
