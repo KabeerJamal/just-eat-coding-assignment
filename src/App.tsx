@@ -1,4 +1,5 @@
 import { useRestaurantSearch } from './hooks/useRestaurantSearch';
+import { Header } from './components/layout/Header';
 import { LoadingSpinner } from './components/status/LoadingSpinner';
 import { IdleState } from './components/status/IdleState';
 
@@ -14,10 +15,8 @@ export default function App() {
   } = useRestaurantSearch();
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <header>
-        <h2>Just Eat: Search</h2>
-      </header>
+    <div>
+      <Header></Header>
 
       <SearchBar
         postcode={postcode}
