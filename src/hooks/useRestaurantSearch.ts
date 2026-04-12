@@ -18,9 +18,12 @@ export function useRestaurantSearch() {
     }
   }
 
-  function search() {
-    if (!UK_POSTCODE_REGEX.test(postcode.trim())) {
+
+  function search(postcodeOverride?: string) {
+    const value = postcodeOverride !== undefined ? postcodeOverride : postcode;
+    if (!UK_POSTCODE_REGEX.test(value.trim())) {
       setValidationError('Please enter a valid UK postcode');
+      setRestaurants([]);
       return;
     }
 
@@ -29,10 +32,10 @@ export function useRestaurantSearch() {
     setStatus('loading');
     setRestaurants([]);
 
-    fetchRestaurantsByPostcode(postcode.trim())
+    fetchRestaurantsByPostcode(value.trim())
       .then((data) => {
-        setRestaurants(data);
-        setStatus('success');
+          setRestaurants(data);
+          setStatus('success');
       })
       .catch((err) => {
         setApiError(err);

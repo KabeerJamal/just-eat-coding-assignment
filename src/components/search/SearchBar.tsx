@@ -3,7 +3,7 @@ import { POSTCODES } from '../../config/constants';
 interface SearchBarProps {
   postcode: string;
   onChange: (value: string) => void;
-  onSearch: (value?: string) => void;//do () => void
+  onSearch: (value?: string) => void;
   isLoading: boolean;
   validationError: string;
 }
@@ -41,7 +41,7 @@ export function SearchBar({ postcode, onChange, onSearch, isLoading, validationE
             className="search-bar__select"
             onChange={(e) => {
               onChange(e.target.value);
-              onSearch(e.target.value);//pass nothing
+              onSearch(e.target.value);
             }}
             value=""
             aria-label="Pick an example postcode"
@@ -61,7 +61,7 @@ export function SearchBar({ postcode, onChange, onSearch, isLoading, validationE
           <button
             type="button"
             className="search-bar__button"
-            onClick={() => onSearch()}//just write on search
+            onClick={() => onSearch()}
             disabled={isLoading}
           >
             {isLoading ? 'Searching…' : 'Search'}
