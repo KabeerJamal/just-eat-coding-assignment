@@ -59,6 +59,7 @@ docker stop just-eat && docker rm just-eat
 ---
 
 ### 4. Alternative: Local Development
+
 From the project root:
 ```bash
 npm install
@@ -71,6 +72,7 @@ Open [http://localhost:5173](http://localhost:5173). Hot reload is enabled.
 
 ### 5. Tests
 
+From the project root:
 ```bash
 npm install   # if not already done
 npm test
@@ -80,9 +82,9 @@ npm test
 ## Tools used:
 
 
-**TypeScript & React**:I chose **TypeScript** for its strict type safety, allowing me to define clear data contracts between the Just Eat API and my components, catching mismatches at compile time rather than runtime. I chose **React** over **Vanilla JS** because both plain approaches have drawbacks, directly manipulating the DOM is slow and gets messy fast, while re-rendering the entire page for every small change is wasteful. React solves both problems with its Virtual DOM, which figures out exactly what changed and updates only that part of the real DOM.
+**TypeScript & React**: I chose **TypeScript** for its strict type safety, allowing me to define clear data contracts between the Just Eat API and my components, catching mismatches at compile time rather than runtime. I chose **React** over **Vanilla JS** because both plain approaches have drawbacks, directly manipulating the DOM is slow and gets messy fast, while re-rendering the entire page for every small change is wasteful. React solves both problems with its Virtual DOM, which figures out exactly what changed and updates only that part of the real DOM.
 
-**Build and Test**:I used **Vite** for its fast build speeds and smooth developer experience. For testing, I chose **Jest and React Testing Library**, the industry standard for testing component behaviour over implementation details, giving confidence that the core requirements are working correctly.
+**Build and Test**: I used **Vite** for its fast build speeds and smooth developer experience. For testing, I chose **Jest and React Testing Library**, the industry standard for testing component behaviour over implementation details, giving confidence that the core requirements are working correctly.
 
 **Containerization and Deployment**: To ensure reviewer can run the app instantly, I containerized the application using **Docker**. I implemented a multi-stage build to optimize the final image size by separating the build environment from the production runtime. The final stage utilizes **Nginx** to serve the production assets efficiently, ensuring a stable and performant environment that runs with a single `docker-compose up --build` command.
 
@@ -96,15 +98,15 @@ Furthermore, I implemented a **request timeout** using an AbortController. Th
 
 <!-- **Data Safety**:The raw API response can contain missing or unexpected data. To protect against this, I created a clean data model (**RestaurantUI**) and mapped the API response through it before it ever reaches the UI, filling in safe fallbacks for anything missing. This means the UI always gets predictable, well-defined data and will never crash due to an undefined value. -->
 
-**Rendering Optimisation**:I wrapped the static Header component in `React.memo` so it only renders once, since it has no props or state, re-rendering it every time App updates is unnecessary.
+**Rendering Optimisation**: I wrapped the static Header component in `React.memo` so it only renders once, since it has no props or state, re-rendering it every time App updates is unnecessary.
 
-**Testing Strategy**:I used a **TDD** approach for the core data mapping logic. I first defined the data contracts (RestaurantAPIResponse and RestaurantUI) as TypeScript interfaces, then wrote tests against what the mapper should do,. covering edge cases like malformed responses, missing fields, and the 10-item limit; before writing the implementation itself. For the UI layer, I tested after building; since UI is iterative and visual, I waited until components were stable then added tests to verify each state (loading, success, error) renders correctly.
+**Testing Strategy**: I used a **TDD** approach for the core data mapping logic. I first defined the data contracts (RestaurantAPIResponse and RestaurantUI) as TypeScript interfaces, then wrote tests against what the mapper should do, covering edge cases like malformed responses, missing fields, and the 10-item limit; before writing the implementation itself. For the UI layer, I tested after building; since UI is iterative and visual, I waited until components were stable then added tests to verify each state (loading, success, error) renders correctly.
 
-**Component Architecture**:I started with a single-file implementation for the UI to validate the core logic, then refactored into small, reusable components and a custom React hook. This keeps the codebase clean, modular, and easy to extend.
+**Component Architecture**: I started with a single-file implementation for the UI to validate the core logic, then refactored into small, reusable components and a custom React hook. This keeps the codebase clean, modular, and easy to extend.
 
-**Styling & User Experience**:I used **SCSS** with **CSS** Variables to keep colors and spacing consistent across the app, any global change requires updating a single value. I also added clear feedback states for loading, error, and empty results so the user always knows what's happening.
+**Styling & User Experience**: I used **SCSS** with **CSS** Variables to keep colors and spacing consistent across the app, any global change requires updating a single value. I also added clear feedback states for loading, error, and empty results so the user always knows what is happening.
 
-**Accessibility**:I used high-contrast colors for readability, ARIA labels for screen reader support, and ensured the layout is fully responsive across both desktop and mobile.
+**Accessibility**: I used high-contrast colors for readability, ARIA labels for screen reader support, and ensured the layout is fully responsive across both desktop and mobile.
 
 
 ## Testing Strategy
@@ -123,19 +125,19 @@ I focused on real-world reliability, ensuring the app handles dirty or incomplet
 ## Assumptions and Clarifications
 
 
-**Future Scalability**:I built the project assuming it should be easy to extend, using modular folders, reusable components, and centralised variables rather than hardcoded values. The goal was a professional, scalable structure without over-engineering for the current scope.
+**Future Scalability**: I built the project assuming it should be easy to extend, using modular folders, reusable components, and centralised variables rather than hardcoded values. The goal was a professional, scalable structure without over-engineering for the current scope.
 
-**API Data Reliability**:I assumed the API generally follows its documented format. While the mapper handles missing fields, nulls, and empty strings defensively, I trusted that basic data types (e.g. a name being a string and not some random object) would remain consistent.
+**API Data Reliability**: I assumed the API generally follows its documented format. While the mapper handles missing fields, nulls, and empty strings defensively, I trusted that basic data types (e.g. a name being a string and not some random object) would remain consistent.
 
-**UK Postcode Validation**:Since the API only works for UK postcodes, I added frontend Regex validation before making any API call. This improves UX by giving instant feedback and avoids unnecessary network requests for invalid inputs.
+**UK Postcode Validation**: Since the API only works for UK postcodes, I added frontend Regex validation before making any API call. This improves UX by giving instant feedback and avoids unnecessary network requests for invalid inputs.
 
-**Professional Workflow**:I used a Git feature-branch workflow throughout. While unnecessary for a solo project, it reflects how I would work in a team, keeping a clean commit history and an organised approach to adding features.
+**Professional Workflow**: I used a Git feature-branch workflow throughout. While unnecessary for a solo project, it reflects how I would work in a team, keeping a clean commit history and an organised approach to adding features.
 
 
 ## Trade Offs, Challeneges and Lesson learned
 
 
-**Clarifying Requirements**:Working without a team meant making solo decisions on details like address formatting or zero-rating fallbacks. In a real project these would be answered by a Product Manager or Designer, here I made choices myself and moved forward.
+**Clarifying Requirements**: Working without a team meant making solo decisions on details like address formatting or zero-rating fallbacks. In a real project these would be answered by a Product Manager or Designer, here I made choices myself and moved forward.
 **Handling Data Consistency**: One of the challenge was handling missing or null API data without polluting the UI with defensive checks. I solved this by centralising all the fallback logic in the data mapper, so React components always receive clean, predictable data. The trade-off was investing more time upfront in the data layer to keep the UI simple and crash-proof.
 ```typescript
 export interface RestaurantUI {
@@ -164,7 +166,7 @@ export interface RestaurantUI {
 
 **Multi Language Suppport**: I would include Multi Language support to support Just eat global Customers
 
-**Postcode Validation Tests**:I would add unit tests for the postcode regex, covering valid formats, invalid inputs, and edge cases like lowercase or extra spaces
+**Postcode Validation Tests**: I would add unit tests for the postcode regex, covering valid formats, invalid inputs, and edge cases like lowercase or extra spaces
 
 
 ## AI Usage & Learning
