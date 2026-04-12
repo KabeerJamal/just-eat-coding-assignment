@@ -59,7 +59,7 @@ docker stop just-eat && docker rm just-eat
 ---
 
 ### 4. Alternative: Local Development
-
+From the project root:
 ```bash
 npm install
 npm run dev
