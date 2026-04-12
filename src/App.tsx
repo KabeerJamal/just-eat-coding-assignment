@@ -1,7 +1,5 @@
 import { useRestaurantSearch } from './hooks/useRestaurantSearch';
-import { SearchBar } from './components/SearchBar';
-import { ApiErrorBanner } from './components/ApiErrorBanner';
-import { RestaurantList } from './components/RestaurantList';
+import { LoadingSpinner } from './components/status/LoadingSpinner';
 
 export default function App() {
   const {
@@ -28,12 +26,7 @@ export default function App() {
         validationError={validationError}
       />
 
-      {status === 'loading' && (
-        <div style={{ margin: '15px 0', fontStyle: 'italic', color: '#555' }}>
-          Loading restaurants...
-        </div>
-      )}
-
+      {status === 'loading' && <LoadingSpinner></LoadingSpinner>}
       {status === 'error' && <ApiErrorBanner error={apiError} onRetry={search} />}
 
       {status === 'success' && <RestaurantList restaurants={restaurants} />}
