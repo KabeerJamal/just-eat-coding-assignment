@@ -175,7 +175,7 @@ I used AI as a **technical mentor** during this project. Instead of asking for f
 
 - Get feedback on my architectural ideas and project structure.
 - Clarify specific TypeScript syntax and best practices.
-- Ask for 1-2 lines of code max if I was stuch somewhere.
+- Ask for 1-2 lines of code if I was stuck somewhere.
 
 This helped me learn modern standards while ensuring that 100% of the project's logic and structure are my own.
 
