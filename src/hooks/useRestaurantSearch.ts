@@ -21,11 +21,6 @@ export function useRestaurantSearch() {
 
   function search(postcodeOverride?: string) {
     const value = postcodeOverride !== undefined ? postcodeOverride : postcode;
-    if (!UK_POSTCODE_REGEX.test(value.trim())) {
-      setValidationError('Please enter a valid UK postcode');
-      setRestaurants([]);
-      return;
-    }
 
     setValidationError('');
     setApiError(null);
