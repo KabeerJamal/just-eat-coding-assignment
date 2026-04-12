@@ -9,7 +9,7 @@ export function RestaurantCard({ restaurant }: RestaurantCardProps) {
     <li className="restaurant-card">
       <div className="restaurant-card__header">
         <h2 className="restaurant-card__name">{restaurant.name}</h2>
-        <span className="restaurant-card__rating">{restaurant.rating} ★</span>
+        <span className="restaurant-card__rating" aria-label={`Rating: ${restaurant.rating} out of 5`}>{restaurant.rating} ★</span>
       </div>
 
       <p className="restaurant-card__cuisines">{restaurant.cuisines.join(' · ')}</p>

@@ -31,7 +31,7 @@ export default function App() {
 
       {status === 'idle' && <IdleState />}
       {status === 'loading' && <LoadingSpinner></LoadingSpinner>}
-      {status === 'error' && <ApiErrorBanner error={apiError} onRetry={search} />}
+      {status === 'error' && <ApiErrorBanner error={apiError}/>}
       {status === 'success' && <RestaurantList restaurants={restaurants} />}
     </div>
   );

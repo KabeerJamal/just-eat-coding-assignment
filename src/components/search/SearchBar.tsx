@@ -10,7 +10,11 @@ interface SearchBarProps {
 
 export function SearchBar({ postcode, onChange, onSearch, isLoading, validationError }: SearchBarProps) {
   return (
+    
     <section className="search-bar" aria-label="Search by postcode">
+      <div aria-live="polite" className="sr-only">
+        {isLoading ? 'Searching for restaurants' : ''}
+      </div>
       <div className="search-bar__row">
         <div className="search-bar__field search-bar__field--grow">
           <label className="search-bar__label" htmlFor="search-bar-postcode">
@@ -44,7 +48,7 @@ export function SearchBar({ postcode, onChange, onSearch, isLoading, validationE
               onSearch(e.target.value);
             }}
             value=""
-            aria-label="Pick an example postcode"
+            aria-label="Pick an Example Postcode"
           >
             <option value="" disabled>
               Example postcodes
@@ -66,6 +70,7 @@ export function SearchBar({ postcode, onChange, onSearch, isLoading, validationE
           >
             {isLoading ? 'Searching…' : 'Search'}
           </button>
+    
         </div>
       </div>
 

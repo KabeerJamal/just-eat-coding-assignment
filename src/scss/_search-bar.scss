@@ -100,3 +100,11 @@
     font-weight: 500;
     color: var(--color-error);
   }
+
+  .search-bar__input,
+.search-bar__select {
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

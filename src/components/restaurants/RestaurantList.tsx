@@ -8,8 +8,8 @@ interface RestaurantListProps {
 export function RestaurantList({ restaurants }: RestaurantListProps) {
   if (restaurants.length === 0) {
     return (
-      <div className="restaurant-list__empty">
-        <p>No restaurants found for this postcode. Try another one.</p>
+      <div className="restaurant-list__empty" aria-live="polite">
+        <p>No restaurants found for this postcode. Try another one. 🙂</p>
       </div>
     );
   }
