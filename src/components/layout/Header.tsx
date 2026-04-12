@@ -1,5 +1,6 @@
+import React from "react";
 
-export function Header() {
+export const Header = React.memo(function Header() {
   return (
     <header className="app-header" role="banner">
       <div className="app-header__inner">
@@ -11,4 +12,4 @@ export function Header() {
       </div>
     </header>
   );
-}
+});
