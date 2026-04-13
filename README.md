@@ -138,6 +138,7 @@ I focused on real-world reliability, ensuring the app handles dirty or incomplet
 
 
 **Clarifying Requirements**: Working without a team meant making solo decisions on details like address formatting or zero-rating fallbacks. In a real project these would be answered by a Product Manager or Designer, here I made choices myself and moved forward.
+
 **Handling Data Consistency**: One of the challenge was handling missing or null API data without polluting the UI with defensive checks. I solved this by centralising all the fallback logic in the data mapper, so React components always receive clean, predictable data. The trade-off was investing more time upfront in the data layer to keep the UI simple and crash-proof.
 ```typescript
 export interface RestaurantUI {
@@ -152,9 +153,10 @@ export interface RestaurantUI {
 }
 ```
 
-**Data Structure: Flattening vs. Flexibility**: I had to decide how much to flatten the API response. A fully flat structure (e.g. one combined address string) leads to very readable UI code but inflexible. I chose a balanced approach , removing deep nesting for safety while keeping key fields like city and postcode separate, preserving the flexibility to style them independently in the UI.
+**Data Structure, Flattening vs. Flexibility**: I had to decide how much to flatten the API response. A fully flat structure (e.g. one combined address string) leads to very readable UI code but inflexible. I chose a balanced approach , removing deep nesting for safety while keeping key fields like city and postcode separate, preserving the flexibility to style them independently in the UI.
 
-**Lessons Learnedm, Accessibility-First Design**: I initially used generic tags like <div> and focused on visual layout first, while I should have started with adding semantic HTML and focusing on Accesbility from the start. Going forward I would plan the HTML structure for screen readers and keyboard users from the start, it leads to a cleaner, more inclusive codebase and is much easier than partly retrofitting accessibility at the end.
+
+**Lessons Learned, Accessibility-First Design**: I initially used generic tags like <div> and focused on visual layout first, while I should have started with adding semantic HTML and focusing on Accesbility from the start. Going forward I would plan the HTML structure for screen readers and keyboard users from the start, it leads to a cleaner, more inclusive codebase and is much easier than partly retrofitting accessibility at the end.
 
 
 ## Future improvements
