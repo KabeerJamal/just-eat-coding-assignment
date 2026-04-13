@@ -113,7 +113,7 @@ Furthermore, I implemented a **request timeout** using an AbortController. Th
 
 I focused on real-world reliability, ensuring the app handles dirty or incomplete API data without crashing.
 
-**Unit Testing, Data Logic**: I tested the mapping logic against the three most common API failure modes: missing fields (undefined), null values, and blank/empty data. I don not assume the API is perfect, the mapper is built to handle all of these gracefully.
+**Unit Testing, Data Logic**: I tested the mapping logic against the three most common API failure modes: missing fields (undefined, null values, and blank/empty data). I do not assume the API is perfect, the mapper is built to handle all of these gracefully.
 **Service Integration**: I tested the service layer using `jest.fn()` to mock API calls, keeping tests fast and independent of a real network connection. This layer is the glue between the raw API and the UI, so verifying it end-to-end was important.
 
 **UI Testing**: I covered three core scenarios:
@@ -154,7 +154,7 @@ export interface RestaurantUI {
 
 **Data Structure: Flattening vs. Flexibility**: I had to decide how much to flatten the API response. A fully flat structure (e.g. one combined address string) leads to very readable UI code but inflexible. I chose a balanced approach , removing deep nesting for safety while keeping key fields like city and postcode separate, preserving the flexibility to style them independently in the UI.
 
-**Lessons Learnedm, Accessibility-First Design**: I initially used generic tags like <div> and focused on visual layout first, while I should have started with adding semantic HTML (<main>, <section>, <header>) and focusing on Accesbility from the start. Going forward I would plan the HTML structure for screen readers and keyboard users from the start, it leads to a cleaner, more inclusive codebase and is much easier than partly retrofitting accessibility at the end.
+**Lessons Learnedm, Accessibility-First Design**: I initially used generic tags like <div> and focused on visual layout first, while I should have started with adding semantic HTML and focusing on Accesbility from the start. Going forward I would plan the HTML structure for screen readers and keyboard users from the start, it leads to a cleaner, more inclusive codebase and is much easier than partly retrofitting accessibility at the end.
 
 
 ## Future improvements
