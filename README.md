@@ -156,7 +156,7 @@ export interface RestaurantUI {
 **Data Structure, Flattening vs. Flexibility**: I had to decide how much to flatten the API response. A fully flat structure (e.g. one combined address string) leads to very readable UI code but inflexible. I chose a balanced approach , removing deep nesting for safety while keeping key fields like city and postcode separate, preserving the flexibility to style them independently in the UI.
 
 
-**Lessons Learned, Accessibility-First Design**: I initially used generic tags like <div> and focused on visual layout first, while I should have started with adding semantic HTML and focusing on Accesbility from the start. Going forward I would plan the HTML structure for screen readers and keyboard users from the start, it leads to a cleaner, more inclusive codebase and is much easier than partly retrofitting accessibility at the end.
+**Lessons Learned, Accessibility-First Design**: I initially used generic tags like `div` and focused on visual layout first, while I should have started with adding semantic HTML and focusing on Accesbility from the start. Going forward I would plan the HTML structure for screen readers and keyboard users from the start, it leads to a cleaner, more inclusive codebase and is much easier than partly retrofitting accessibility at the end.
 
 
 ## Future improvements
